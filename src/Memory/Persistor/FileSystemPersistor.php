@@ -10,9 +10,7 @@ class FileSystemPersistor implements PersistorPort
 
     private $conf;
 
-    public function __construct(
-        Config $conf
-    )
+    public function init(Config $conf)
     {
         $this->conf = $conf;
     }
