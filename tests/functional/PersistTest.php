@@ -19,7 +19,7 @@ class PersistTest extends PHPUnit\Framework\TestCase
         $memory->save([ 'foo' => 'mondo' ]);
 
         $config = [
-            'path' => __DIR__ . '/../../memory.memory'
+            'path' => __DIR__ . '/../../../memory.memory'
         ];
 
         $persist = new Persist(
