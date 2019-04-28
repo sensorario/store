@@ -51,21 +51,18 @@ class Memory
 
     public function findRecordBy($searches, $option = Memory::FILL_REFERENCE)
     {
-        $collection = new Collection();
+        $result = new Collection();
+        $result->fillStrategy($option);
 
         foreach ($this->records as $reference => $record) {
             $this->matcher->setData($record);
             foreach ($searches as $searchKey => $searchValue) {
                 if ($this->matcher->knows($searchKey, $searchValue)) {
-                    if ($option == Memory::FILL_DATA) {
-                        $collection->set($reference, $record);
-                    } else {
-                        $collection->add($reference);
-                    }
+                    $result->remember($reference, $record);
                 }
             }
         }
 
-        return $collection->toArray();
+        return $result->toArray();
     }
 }
