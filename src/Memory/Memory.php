@@ -12,6 +12,13 @@ class Memory
 
     private $records = [];
 
+    private $matcher;
+
+    public function __construct()
+    {
+        $this->matcher = new Matcher();
+    }
+
     public function save($record)
     {
         $reference = md5(microtime());
@@ -45,31 +52,12 @@ class Memory
     {
         $collection = new Collection();
 
-        foreach ($this->records as $reference => $data) {
+        foreach ($this->records as $reference => $record) {
+            $this->matcher->setData($record);
             foreach ($searches as $searchKey => $searchValue) {
-
-                $currentData = current($data);
-                $samevalue = $currentData == $searchValue;
-
-                $num = count($this->records[$reference]);
-
-                $addReference = false;
-
-                if ($samevalue) {
-                    $addReference = true;
-                }
-
-                if (!$samevalue) {
-                    foreach ($data as $field => $value) {
-                        if ($searchKey == $field && $searchValue == $value) {
-                            $addReference = true;
-                        }
-                    }
-                }
-
-                if ($addReference == true) {
+                if ($this->matcher->knows($searchKey, $searchValue)) {
                     if ($option == Memory::FILL_DATA) {
-                        $collection->set($reference, $data);
+                        $collection->set($reference, $record);
                     } else {
                         $collection->add($reference);
                     }
