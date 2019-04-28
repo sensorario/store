@@ -1,7 +1,8 @@
 <?php
 
-namespace Memory;
+namespace Memory\Services;
 
+use Memory\Config\Config;
 use Memory\Persistor\PersistorPort;
 
 class Persist
