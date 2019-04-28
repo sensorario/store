@@ -7,24 +7,27 @@ use Memory\Persistor\PersistorPort;
 
 class FindRecordByTest extends PHPUnit\Framework\TestCase
 {
+    public function setUp() : void
+    {
+        $this->memory = new Memory();
+    }
+
     public function testResultsContainsReferenceAndData()
     {
-        $memory = new Memory();
+        $first  = $this->memory->save([ 'nome' => 'Simone', 'cognome'  => 'Gentili', ]);
+        $second = $this->memory->save([ 'nome' => 'Lorenzo', 'cognome' => 'Gentili', ]);
+        $third  = $this->memory->save([ 'nome' => 'Sofia', 'cognome'   => 'Gentili', ]);
+        $fourth = $this->memory->save([ 'nome' => 'Ilaria', 'cognome'  => 'Monti', ]);
 
-        $first  = $memory->save([ 'nome' => 'Simone', 'cognome'  => 'Gentili', ]);
-        $second = $memory->save([ 'nome' => 'Lorenzo', 'cognome' => 'Gentili', ]);
-        $third  = $memory->save([ 'nome' => 'Sofia', 'cognome'   => 'Gentili', ]);
-        $fourth = $memory->save([ 'nome' => 'Ilaria', 'cognome'  => 'Monti', ]);
-
-        $result = $memory->findRecordBy([
+        $result = $this->memory->findRecordBy([
             'cognome' => 'Gentili',
         ], Memory::FILL_DATA);
 
         $this->assertEquals(
             [
-                $first  => $memory->emerge($first),
-                $second => $memory->emerge($second),
-                $third  => $memory->emerge($third),
+                $first  => $this->memory->emerge($first),
+                $second => $this->memory->emerge($second),
+                $third  => $this->memory->emerge($third),
             ],
             $result
         );
@@ -32,14 +35,12 @@ class FindRecordByTest extends PHPUnit\Framework\TestCase
 
     public function testResultsContainsData()
     {
-        $memory = new Memory();
+        $first  = $this->memory->save([ 'nome' => 'Simone', 'cognome'  => 'Gentili', ]);
+        $second = $this->memory->save([ 'nome' => 'Lorenzo', 'cognome' => 'Gentili', ]);
+        $third  = $this->memory->save([ 'nome' => 'Sofia', 'cognome'   => 'Gentili', ]);
+        $fourth = $this->memory->save([ 'nome' => 'Ilaria', 'cognome'  => 'Monti', ]);
 
-        $first  = $memory->save([ 'nome' => 'Simone', 'cognome'  => 'Gentili', ]);
-        $second = $memory->save([ 'nome' => 'Lorenzo', 'cognome' => 'Gentili', ]);
-        $third  = $memory->save([ 'nome' => 'Sofia', 'cognome'   => 'Gentili', ]);
-        $fourth = $memory->save([ 'nome' => 'Ilaria', 'cognome'  => 'Monti', ]);
-
-        $result = $memory->findRecordBy([
+        $result = $this->memory->findRecordBy([
             'cognome' => 'Gentili',
         ], Memory::FILL_REFERENCE);
 
