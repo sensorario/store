@@ -1,7 +1,6 @@
 <?php
 
-use Memory\Memory;
-use Memory\MemoryObject;
+use Memory\Services\Memory;
 
 class MemoryTest extends PHPUnit\Framework\TestCase
 {

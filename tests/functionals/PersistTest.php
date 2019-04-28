@@ -1,10 +1,10 @@
 <?php
 
-use Memory\Config;
-use Memory\Memory;
-use Memory\Persist;
+use Memory\Config\Config;
+use Memory\Services\Persist;
 use Memory\Persistor\FileSystemPersistor;
 use Memory\Persistor\PersistorPort;
+use Memory\Services\Memory;
 
 class PersistTest extends PHPUnit\Framework\TestCase
 {

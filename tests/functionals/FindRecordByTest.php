@@ -1,7 +1,7 @@
 <?php
 
 use Memory\Config;
-use Memory\Memory;
+use Memory\Services\Memory;
 use Memory\Persistor\FileSystemPersistor;
 use Memory\Persistor\PersistorPort;
 

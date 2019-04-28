@@ -2,7 +2,7 @@
 
 namespace Memory\Persistor;
 
-use Memory\Config;
+use Memory\Config\Config;
 
 class FileSystemPersistor implements PersistorPort
 {

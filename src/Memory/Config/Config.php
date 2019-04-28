@@ -1,6 +1,6 @@
 <?php
 
-namespace Memory;
+namespace Memory\Config;
 
 class Config
 {

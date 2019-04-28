@@ -1,7 +1,8 @@
 <?php
 
-namespace Memory;
+namespace Memory\Services;
 
+use Memory\Model\Collection;
 use Memory\Persistor\PersistorPort;
 
 class Memory
