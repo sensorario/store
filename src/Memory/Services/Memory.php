@@ -65,4 +65,9 @@ class Memory
 
         return $result->toArray();
     }
+
+    public function readJson($json)
+    {
+        $this->records = json_decode($json);
+    }
 }

@@ -1,11 +1,14 @@
 <?php
 
+namespace Functional;
+
 use Memory\Config;
-use Memory\Services\Memory;
 use Memory\Persistor\FileSystemPersistor;
 use Memory\Persistor\PersistorPort;
+use Memory\Services\Memory;
+use PHPUnit\Framework\TestCase;
 
-class FindRecordByTest extends PHPUnit\Framework\TestCase
+class MemoryTest extends TestCase
 {
     public function setUp() : void
     {
@@ -45,5 +48,25 @@ class FindRecordByTest extends PHPUnit\Framework\TestCase
         ], Memory::FILL_REFERENCE);
 
         $this->assertEquals( [ $first, $second, $third, ], $result);
+    }
+
+    public function testFilterRecordsAlwoWheneverReadFromJson()
+    {
+        $this->memory->readJson(json_encode([
+            'aaa' => [
+                'nome' => 'Simone',
+                'cognome' => 'Gentili',
+            ],
+            'bbb' => [
+                'nome' => 'Ilaria',
+                'cognome' => 'Monti',
+            ],
+        ]));
+
+        $result = $this->memory->findRecordBy([
+            'cognome' => 'Monti',
+        ], Memory::FILL_REFERENCE);
+
+        $this->assertEquals( [ 'bbb' ], $result);
     }
 }
