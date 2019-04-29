@@ -1,8 +1,11 @@
 <?php
 
-use Memory\Services\Memory;
+namespace Unit;
 
-class MemoryTest extends PHPUnit\Framework\TestCase
+use Memory\Services\Memory;
+use PHPUnit\Framework\TestCase;
+
+class MemoryTest extends TestCase
 {
     public function setUp(): void
     {
