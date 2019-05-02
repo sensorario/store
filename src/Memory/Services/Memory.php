@@ -2,6 +2,7 @@
 
 namespace Memory\Services;
 
+use Memory\Config\Config;
 use Memory\Model\Collection;
 use Memory\Persistor\PersistorPort;
 
@@ -14,6 +15,8 @@ class Memory
     private $records = [];
 
     private $matcher;
+
+    private $config;
 
     public function __construct()
     {
@@ -38,11 +41,6 @@ class Memory
     {
         return count($this->records);
     }
-
-    //public function findRecord($record, $option)
-    //{
-        //return $this->findRecordBy($record, $option);
-    //}
 
     public function records()
     {
@@ -69,5 +67,29 @@ class Memory
     public function readJson($json)
     {
         $this->records = json_decode($json);
+    }
+
+    public function init(Config $config)
+    {
+        $this->config = $config;
+    }
+
+    public function loadFromFileSystem()
+    {
+        $this->ensureConfigIsDefined();
+
+        $this->records = json_decode(
+            file_get_contents($this->config->getPath()),
+            true
+        );
+    }
+
+    public function ensureConfigIsDefined()
+    {
+        if (!$this->config) {
+            throw new \RuntimeException(
+                'Oops! Configuration is missing'
+            );
+        }
     }
 }
