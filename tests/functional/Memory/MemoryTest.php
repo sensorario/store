@@ -1,6 +1,6 @@
 <?php
 
-namespace Functional;
+namespace Memory\Functional;
 
 use Memory\Config;
 use Memory\Persistor\FileSystemPersistor;

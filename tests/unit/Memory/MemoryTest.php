@@ -1,6 +1,6 @@
 <?php
 
-namespace Unit;
+namespace Memory\Unit;
 
 use Memory\Services\Memory;
 use PHPUnit\Framework\TestCase;
@@ -29,7 +29,7 @@ class MemoryTest extends TestCase
     {
         $reference = $this->memory->save([ "foo" => "bar", ]);
 
-        $record = $this->memory->findRecord(
+        $record = $this->memory->findRecordBy(
             [ "foo" => "bar", ],
             Memory::FILL_REFERENCE
         );
@@ -39,7 +39,7 @@ class MemoryTest extends TestCase
 
     public function testReturnEmptyArrayWheneverRecordIsNotFound()
     {
-        $record = $this->memory->findRecord(
+        $record = $this->memory->findRecordBy(
             [ "foo" => "bar", ],
             Memory::FILL_REFERENCE
         );
@@ -52,7 +52,7 @@ class MemoryTest extends TestCase
         $reference[] = $this->memory->save([ "foo" => "bar", ]);
         $reference[] = $this->memory->save([ "foo" => "bar", ]);
         $reference[] = $this->memory->save([ "foo" => "bar", ]);
-        $record = $this->memory->findRecord(
+        $record = $this->memory->findRecordBy(
             [
                 "foo" => "bar",
             ], Memory::FILL_REFERENCE
@@ -131,9 +131,9 @@ class MemoryTest extends TestCase
     {
         $first = $this->memory->save([ "foo" => "bar", ]);
 
-        $record = $this->memory->findRecord([ "foo" => "bar", ], Memory::FILL_DATA);
+        $results = $this->memory->findRecordBy([ "foo" => "bar", ], Memory::FILL_DATA);
 
-        $this->assertEquals($record, [
+        $this->assertEquals($results, [
             $first => $this->memory->emerge($first),
         ]);
     }

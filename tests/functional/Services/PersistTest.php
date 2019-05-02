@@ -1,12 +1,15 @@
 <?php
 
+namespace Memory\Functional;
+
 use Memory\Config\Config;
-use Memory\Services\Persist;
 use Memory\Persistor\FileSystemPersistor;
 use Memory\Persistor\PersistorPort;
 use Memory\Services\Memory;
+use Memory\Services\Persist;
+use PHPUnit\Framework\TestCase;
 
-class PersistTest extends PHPUnit\Framework\TestCase
+class PersistTest extends TestCase
 {
     public function testResponse()
     {

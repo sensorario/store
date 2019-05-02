@@ -1,6 +1,6 @@
 <?php
 
-namespace Memory\Services;
+namespace Memory\Services\Helper;
 
 class Matcher
 {

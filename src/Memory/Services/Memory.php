@@ -17,7 +17,7 @@ class Memory
 
     public function __construct()
     {
-        $this->matcher = new Matcher();
+        $this->matcher = new Helper\Matcher();
     }
 
     public function save($record)
@@ -39,10 +39,10 @@ class Memory
         return count($this->records);
     }
 
-    public function findRecord($record, $option)
-    {
-        return $this->findRecordBy($record, $option);
-    }
+    //public function findRecord($record, $option)
+    //{
+        //return $this->findRecordBy($record, $option);
+    //}
 
     public function records()
     {
