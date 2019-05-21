@@ -1,8 +1,8 @@
 default:
 	./bin/phpunit
 
-agile:
-	./bin/phpunit --testdox
+agile-doc:
+	./bin/phpunit --testdox --color
 
 coverage:
 	./bin/phpunit --coverage-html=/tmp/coverage/
