@@ -10,6 +10,7 @@ use Memory\Services\Persist;
 $memory = new Memory();
 
 $memory->save([ 'name' => 'Simone', 'cognome' => 'Gentili' ]);
+$memory->save([ 'name' => 'Simone', 'cognome' => 'Monti' ]);
 $memory->save([ 'name' => 'Ilaria', 'cognome' => 'Monti' ]);
 
 $persist = new Persist(
@@ -19,10 +20,10 @@ $persist = new Persist(
     ])
 );
 
-//$persist->what($memory);
+$persist->what($memory);
 
-$result = $memory->findRecordBy([
-    'cognome' => 'Simone',
-], Memory::FILL_DATA);
+$content = file_get_contents(__DIR__ . '/store');
 
-echo json_encode($result);
+$decoded = json_decode($content, true);
+
+echo json_encode($decoded, JSON_PRETTY_PRINT);
