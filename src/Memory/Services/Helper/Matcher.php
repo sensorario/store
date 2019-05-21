@@ -13,7 +13,11 @@ class Matcher
 
     public function knows($needleName, $needleValue)
     {
-        if (current($this->haystack) == $needleValue) {
+        if (is_array($this->haystack) && isset($this->haystack[$needleName]) && $this->haystack[$needleName] == $needleValue) {
+            return true;
+        }
+
+        if (current($this->haystack) == $needleValue && !is_array($this->haystack)) {
             return true;
         }
 

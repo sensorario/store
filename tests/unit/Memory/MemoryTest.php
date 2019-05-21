@@ -137,4 +137,18 @@ class MemoryTest extends TestCase
             $first => $this->memory->emerge($first),
         ]);
     }
+
+    public function testDoNotMatchWrongKeyValuePair()
+    {
+        $memory = new Memory();
+
+        $memory->save([ 'name' => 'Simone', 'cognome' => 'Gentili' ]);
+        $memory->save([ 'name' => 'Ilaria', 'cognome' => 'Monti' ]);
+
+        $result = $memory->findRecordBy([
+            'cognome' => 'Simone',
+        ], Memory::FILL_DATA);
+
+        $this->assertEquals([], $result);
+    }
 }
