@@ -24,7 +24,7 @@ class FileSystemPersistor implements PersistorPort
     {
         file_put_contents(
             $this->conf->getPath(),
-            json_encode($this->records)
+            json_encode($this->records, JSON_PRETTY_PRINT)
         );
     }
 }
