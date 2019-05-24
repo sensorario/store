@@ -15,16 +15,25 @@ class FileSystemPersistor implements PersistorPort
         $this->conf = $conf;
     }
 
-    public function know(array $records)
+    public function know(array $records) : void
     {
         $this->records = $records;
     }
 
-    public function persist()
+    public function persist($path = null) : void
     {
+        if ($path === null) {
+            $path = $this->conf->getPath();
+        }
+
         file_put_contents(
-            $this->conf->getPath(),
+            $path,
             json_encode($this->records, JSON_PRETTY_PRINT)
         );
+    }
+
+    public function persistInPath($path) : void
+    {
+        $this->persist($path);
     }
 }

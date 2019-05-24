@@ -20,10 +20,10 @@ class Persist
         $this->config = $config;
     }
 
-    public function what(Memory $memory)
+    public function what(Memory $memory, string $where = null)
     {
         $this->persistor->init($this->config);
         $this->persistor->know($memory->records());
-        $this->persistor->persist();
+        $this->persistor->persistInPath($where);
     }
 }
