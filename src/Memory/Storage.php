@@ -29,4 +29,9 @@ class Storage
     {
         $this->persist->what($this->memory);
     }
+
+    public function saveInPath(string $path)
+    {
+        $this->persist->what($this->memory, $path);
+    }
 }

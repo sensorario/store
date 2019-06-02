@@ -94,9 +94,9 @@ class MemoryTest extends TestCase
 
     public function testFindItemsByMoreKeysAndValues()
     {
-        $r = [];
+        $expected = [];
 
-        $r[] = $this->memory->save([
+        $expected[] = $this->memory->save([
             "foo2" => "bar1",
             "foo1" => "bar1",
             "aaa"  => "aaa",
@@ -107,13 +107,13 @@ class MemoryTest extends TestCase
             "foo1" => "bar2",
         ]);
 
-        $r[] = $this->memory->save([
+        $expected[] = $this->memory->save([
             "foo2" => "bar3",
             "bbb"  => "bbb",
             "foo1" => "bar3",
         ]);
 
-        $r[] = $this->memory->save([
+        $expected[] = $this->memory->save([
             "foo2" => "bar4",
             "foo1" => "bar2",
             "bbb"  => "bbb",
@@ -124,7 +124,7 @@ class MemoryTest extends TestCase
             "bbb" => "bbb",
         ]);
 
-        $this->assertEquals($record, $r);
+        $this->assertEquals($expected, $record);
     }
 
     public function testRetrieveAllDataOfAGivenRecord()

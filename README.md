@@ -1,6 +1,6 @@
 # Store
 
-    Memory/
+    Memory
     ├── Config
     │   └── Config
     ├── Model
@@ -8,7 +8,11 @@
     ├── Persistor
     │   ├── FileSystemPersistor
     │   └── PersistorPort
-    └── Services
-        ├── Matcher
-        ├── Memory
-        └── Persist
+    ├── Services
+    │   ├── Helper
+    │   │   └── Matcher
+    │   ├── Memory
+    │   ├── NewLocalStorage
+    │   └── Persist
+    └── Storage
+
