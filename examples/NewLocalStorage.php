@@ -16,4 +16,4 @@ $storage->save();
 
 $content = file_get_contents($file);
 
-passthru('rm -rf ' . $file);
+//passthru('rm -rf ' . $file);

@@ -13,10 +13,7 @@ $file = __DIR__ . '/store';
 $storage = new Storage(
     new Memory(),
     new Persist(
-        new FileSystemPersistor(),
-        new Config([
-            'path' => $file,
-        ])
+        new FileSystemPersistor()
     )
 );
 

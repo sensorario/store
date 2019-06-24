@@ -31,7 +31,10 @@ class PersistTest extends TestCase
         $this->memory->save([ 'foo' => 'mondo' ]);
 
         $persist = new Persist(
-            new FileSystemPersistor(),
+            new FileSystemPersistor()
+        );
+
+        $persist->setConfig(
             new Config($this->config)
         );
 
