@@ -2,6 +2,7 @@
 
 namespace Memory;
 
+use Memory\Config\Config;
 use Memory\Services\Memory;
 use Memory\Services\Persist;
 
@@ -11,13 +12,17 @@ class Storage
 
     private $persist;
 
+    private $config;
+
     public function __construct(
         Memory $memory,
-        Persist $persist
+        Persist $persist,
+        Config $config
     )
     {
         $this->memory = $memory;
         $this->persist = $persist;
+        $this->config = $config;
     }
 
     public function add($value)
@@ -27,11 +32,13 @@ class Storage
 
     public function save()
     {
+        $this->persist->setConfig($this->config);
         $this->persist->what($this->memory);
     }
 
     public function saveInPath(string $path)
     {
+        $this->persist->setConfig($this->config);
         $this->persist->what($this->memory, $path);
     }
 }
