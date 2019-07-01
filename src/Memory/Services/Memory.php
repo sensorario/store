@@ -78,6 +78,10 @@ class Memory
     {
         $this->ensureConfigIsDefined();
 
+        if (!file_exists($this->config->getPath())) {
+            passthru('touch ' . $this->config->getPath());
+        }
+
         $this->records = json_decode(
             file_get_contents($this->config->getPath()),
             true
